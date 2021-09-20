@@ -1,0 +1,964 @@
+{
+  "__inputs": [],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.1.4"
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 16,
+      "panels": [],
+      "title": "Carbon Dioxide",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic",
+            "seriesBy": "last"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "#0a5200",
+                "value": 400
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 600
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1500
+              },
+              {
+                "color": "red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 2,
+      "interval": "1",
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.1.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sensor_co2_ppm",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "co2",
+          "refId": "A"
+        }
+      ],
+      "title": "Carbon Dioxide Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "#0b3c04",
+                "value": 400
+              },
+              {
+                "color": "green",
+                "value": 600
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1500
+              },
+              {
+                "color": "red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.1.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "avg_over_time(sensor_co2_ppm[1h])",
+          "interval": "",
+          "legendFormat": "max co2 last hour",
+          "refId": "A"
+        }
+      ],
+      "title": "Average Carbon Dioxide in the Last Hour",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 10,
+      "panels": [],
+      "title": "Temperature and Humidity",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 68
+              },
+              {
+                "color": "orange",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 88
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "relative humidity"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "humidity"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 80
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#28b5dd",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#d38627",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "id": 4,
+      "interval": "1",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.1.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sensor_temperature_f",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "temperature",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_relative_humidity_percent",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "relative humidity",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Temperature and Relative Humidity Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 68
+              },
+              {
+                "color": "orange",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 88
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "relative humidity"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "humidity"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 80
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 13,
+      "interval": "1",
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.1.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sensor_temperature_f",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "temperature",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_relative_humidity_percent",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "relative humidity",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Current Temperature and Relative Humidity",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 8,
+      "panels": [],
+      "title": "Particulate Matter",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic",
+            "seriesBy": "last"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "dash": [
+                0,
+                10
+              ],
+              "fill": "dot"
+            },
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 12
+              },
+              {
+                "color": "orange",
+                "value": 35.4
+              },
+              {
+                "color": "red",
+                "value": 55.4
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PM10.0"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 54
+                    },
+                    {
+                      "color": "orange",
+                      "value": 154
+                    },
+                    {
+                      "color": "red",
+                      "value": 254
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "id": 12,
+      "interval": "1",
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.1.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sensor_pm10_ug_per_m3",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "PM1.0",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_pm25_ug_per_m3",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "PM2.5",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_pm100_ug_per_m3",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "PM10.0",
+          "refId": "C"
+        }
+      ],
+      "timeFrom": null,
+      "title": "Particulate Matter Over Time (Stacked)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 12
+              },
+              {
+                "color": "orange",
+                "value": 35.4
+              },
+              {
+                "color": "red",
+                "value": 55.4
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PM10.0"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 54
+                    },
+                    {
+                      "color": "orange",
+                      "value": 154
+                    },
+                    {
+                      "color": "red",
+                      "value": 254
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "id": 14,
+      "interval": "1",
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.1.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "avg_over_time(sensor_pm10_ug_per_m3[12h])",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "PM1.0",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "avg_over_time(sensor_pm25_ug_per_m3[12h])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "PM2.5",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "avg_over_time(sensor_pm100_ug_per_m3[12h])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "PM10.0",
+          "refId": "C"
+        }
+      ],
+      "timeFrom": null,
+      "title": "Average Particulate Matter Over 12hrs",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 0
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "id": 18,
+      "interval": "5",
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.1.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sensor_p_03_num_per_decileter",
+          "interval": "",
+          "legendFormat": "p_03",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_p_05_num_per_decileter",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "p_05",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_p_10_num_per_decileter",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "p_10",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_p_25_num_per_decileter",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "p_25",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_p_50_num_per_decileter",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "p_50",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sensor_p_100_num_per_decileter",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "p_100",
+          "refId": "F"
+        }
+      ],
+      "title": "Particulate Matter Counts Per 0.1L of Air",
+      "type": "state-timeline"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 30,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Environmental Statistics",
+  "uid": "_UCHGzN7k",
+  "version": 31
+}

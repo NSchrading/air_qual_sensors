@@ -1,3 +1,6 @@
+pyusb
+pyftdi
+adafruit-blinka
 adafruit-circuitpython-pm25
 adafruit-circuitpython-scd30
 prometheus-client
