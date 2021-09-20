@@ -1,0 +1,7 @@
+adafruit-circuitpython-pm25
+adafruit-circuitpython-scd30
+prometheus-client
+requests
+black
+pylint
+isort
